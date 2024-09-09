@@ -123,5 +123,12 @@ if st.button('Predict'):
     if city == 'France':
         input_scaled = sc.transform([[1, 0, 0, credit_score, gender, age, tenure, bank_balance, no_of_product, has_credit_card, is_active_member, estimated_salary]])
         prediction = model.predict(input_scaled)
-        churn_prediction = "Churn" if prediction[0][0] > 0.5 else "No Churn"
-        st.markdown(f"<h2>Prediction: {churn_prediction}</h2>", unsafe_allow_html=True)
+    elif city == 'Spain':
+        input_scaled = sc.transform([[0, 0, 1, credit_score, gender, age, tenure, bank_balance, no_of_product, has_credit_card, is_active_member, estimated_salary]])
+        prediction = model.predict(input_scaled)
+    elif city == 'Germany':
+        input_scaled = sc.transform([[0, 1, 0, credit_score, gender, age, tenure, bank_balance, no_of_product, has_credit_card, is_active_member, estimated_salary]])
+        prediction = model.predict(input_scaled)
+        
+    churn_prediction = "Churn" if prediction[0][0] > 0.5 else "No Churn"
+    st.markdown(f"<h2>Prediction: {churn_prediction}</h2>", unsafe_allow_html=True)
